@@ -1,0 +1,61 @@
+import Tip from '../../components/Tip.jsx';
+
+# CLI Commands
+*Because graphical interfaces are for cowards anyway.*
+
+The `lcluster` CLI handles everything from booting the entire graphical Dashboard UI to checking headless server statistics and managing individual aggressive nodes without needing the interface explicitly.
+
+You do not need to boot the TUI to restart a stalled instance. We are engineers; we have command arguments for that.
+
+## Full Command Reference
+
+This handles the absolute fundamentals of managing lcluster from standard bash scripts or continuous integration flows seamlessly.
+
+| Command | Action |
+| --- | --- |
+| `lcluster` | Opens the gorgeous graphical TUI dashboard. This is the big shiny button. |
+| `lcluster init` | Runs the setup wizard meticulously bootstrapping your machine's configuration. |
+| `lcluster ps` | Prints the active node list and telemetry statuses straight to the unformatted terminal. No TUI required. |
+| `lcluster start <name>` | Violently powers on a node architecture piece that was previously halted securely. |
+| `lcluster stop <name>` | Safely executes a `SIGTERM` gracefully halting a running node instance abruptly. |
+| `lcluster restart <name>` | Murders the node process entirely and immediately orchestrates an entirely fresh replacement instance rebuilding identically! |
+| `lcluster logs <name>` | Tails the absolute raw live stream of standard JVM console output exactly straight from the specific node. |
+
+## Quick Examples
+
+**Launching the main control Dashboard mapping:**
+```bash
+lcluster
+```
+
+**Viewing all running instances precisely from a headless cron script or fast ssh check:**
+```bash
+lcluster ps
+```
+*Output preview:*
+```text
+  lcluster — node list
+
+  NAME           TEMPLATE         MODE      STATUS     PLAYERS   PING
+  ─────────────────────────────────────────────────────────────────────
+  node-main      default          process   ● online   12        18ms
+  node-docker    high-memory      docker    ● online   7         22ms
+```
+
+**Tailing the console buffer natively dynamically:**
+```bash
+lcluster logs node-docker
+```
+
+<Tip>
+If you ever forget these arguments explicitly, you can append `--help` to exclusively any of these commands mapping directly contextual arguments elegantly right inside your terminal view!
+</Tip>
+
+## Common Mistakes
+
+- **Typos in Node Names**: When issuing `stop` or `restart`, double check the precise node's exact identifier utilizing `lcluster ps` prior to execution. We aren't doing fuzzy-matching regexes here; you must respect exact lowercase strings identically.
+
+## Next Steps
+- → [Adding Nodes](/nodes/adding-nodes)
+- → [TUI Navigation](/tui/navigation)
+- → [Process Mode](/nodes/process)

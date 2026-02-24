@@ -1,0 +1,52 @@
+{
+  "name": "lcluster",
+  "version": "1.0.0",
+  "description": "A powerful Lavalink cluster manager for your terminal",
+  "main": "src/cli.js",
+  "type": "module",
+  "bin": {
+    "lcluster": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "lavalink",
+    "cluster",
+    "discord",
+    "music bot",
+    "tui",
+    "terminal"
+  ],
+  "author": "Ram Krishna",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ramkrishna-js/lcluster.git"
+  },
+  "homepage": "https://lcluster.dev",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "dockerode": "^4.0.2",
+    "http-proxy": "^1.18.1",
+    "ink": "^4.4.1",
+    "ink-text-input": "^5.0.1",
+    "js-yaml": "^4.1.0",
+    "node-fetch": "^3.3.2",
+    "node-notifier": "^10.0.1",
+    "ora": "^8.0.1",
+    "react": "^18.2.0",
+    "tsx": "^4.21.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/register": "^7.23.7"
+  }
+}

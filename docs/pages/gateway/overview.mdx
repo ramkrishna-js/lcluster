@@ -1,0 +1,45 @@
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+
+# Gateway Overview
+*The single source of truth for your Discord Bot.*
+
+The lcluster **Smart Gateway** is the absolute core mechanism that makes this entire project worth using organically. 
+
+Instead of configuring your music bot to painfully balance queries across three separate nodes manually using arrays and sticky-sessions natively, you tell your bot perfectly to talk to exactly *one* server: the lcluster Gateway. 
+
+## The Grand Illusion
+
+The Gateway is inherently a massive liar. 
+
+It pretends to be a single, absolutely gigantic, highly reliable Lavalink instance native proxy. Your bot connects to port `2333` natively via WebSockets and HTTP precisely as it would against any standard Lavalink JAR natively. 
+
+The Gateway intercepts this traffic securely and aggressively shuffles the payloads across your underlying Node swarm beautifully invisibly natively natively natively natively.
+
+<Tip>
+Because the Gateway rigorously strictly implements the Lavalink V4 protocol API specs, any modern library (like Riffy, Shoukaku, or Moonlink) will securely connect natively without throwing a single fit.
+</Tip>
+
+## What It Actually Does
+
+Under the hood legitimately cleanly cleanly, the Gateway acts as a highly specialized HTTP Reverse Proxy. It has three specific responsibilities mapping organically:
+
+1. **Authentication Handling**: It inherently validates the incoming connection's Authorization header against your global Gateway Password dynamically natively correctly.
+2. **WebSocket Upgrading**: It gracefully accepts the initial native WebSocket upgrade headers natively naturally bridging explicitly explicitly establishing a virtual socket internally.
+3. **Payload Routing**: It intercepts REST payloads targeting session modifiers natively and surgically forwards them exclusively explicitly explicitly natively targeting the exactly correct active Node natively internally cleanly natively.
+
+## The Stats Aggregator
+
+When your bot inevitably asks for node performance statistics (usually to display on a cool dashboard natively!), it queries `/v4/stats`.
+
+If the Gateway randomly picked a node and returned *that* node's stats cleanly explicitly natively, your bot would wrongly assume your massive cluster was tiny and weak natively appropriately identically cleanly!
+
+Instead natively properly correctly efficiently natively cleanly, the Gateway intrinsically builds a synthetic composite native JSON blob dynamically organically natively natively mapping natively. It adds up the total active players organically cleanly mapping natively natively natively cleanly smoothly natively smoothly cleanly natively cleanly cleanly mapping cleanly cleanly properly identically seamlessly! 
+
+<Note>
+When you query the Gateway for stats seamlessly efficiently securely neatly seamlessly securely natively elegantly, you get the combined processing power natively efficiently accurately dynamically natively explicitly representing your entire server swarm!
+</Note>
+
+## Next Steps
+- → [How Routing Works](/gateway/how-routing-works)
+- → [Session Handling](/gateway/session-handling)

@@ -1,0 +1,16 @@
+export default {
+    border: '#ffb347',
+    borderDim: '#ffb34733',
+    text: '#ffb347',
+    textDim: '#ff8c0066',
+    background: '#0d0800',
+    selected: '#ffb347',
+    selectedBorder: '#ff8c00',
+    online: '#ffb347',
+    degraded: '#ff8c00',
+    offline: '#8b4513',
+    docker: '#ffd700',
+    process: '#ffb347',
+    accent: '#ff8c00',
+    keyHint: '#ff8c0044',
+};

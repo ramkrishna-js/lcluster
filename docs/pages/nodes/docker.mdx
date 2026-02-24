@@ -1,0 +1,54 @@
+import Warning from '../../components/Warning.jsx';
+import Tip from '../../components/Tip.jsx';
+
+# Docker Mode
+*Keeping Lavalink firmly inside a sandbox.*
+
+The absolute primary default behavior built directly into lcluster is attempting to natively execute `java -jar Lavalink.jar`. However, native Java installations are notoriously messy. Dependencies aggressively collide, and stray PIDs haunt your server.
+
+**Docker Mode** wraps Lavalink instances tightly in complete isolation, offering guaranteed compatibility across every architecture imaginable. It is fundamentally cleaner.
+
+## System Prerequisites
+
+You emphatically must have the Docker Daemon installed, actively running, and accessible without tying your hands using `sudo` privileges dynamically natively. 
+
+During the `lcluster init` wizard phase natively, if the Docker socket is incapable of fielding lcluster's API requests directly, the Docker Mode option will be visibly greyed-out and barred from selection. We do not let you break things on purpose.
+
+## Container Architecture
+
+When utilizing Docker mode actively, the lcluster spawner internally natively reaches out entirely bypassing bash scripts utilizing precise **dockerode** JavaScript bindings natively. It pulls the verified `fredboat/lavalink:latest` image directly from the Docker Hub.
+
+The instantiated container always adopts a standardized rigid naming structure dynamically:
+
+```text
+lcluster-{nodename}
+```
+
+It securely binds to your selected application port on the host machine automatically mapping effectively identical to writing:
+
+```text
+PortBindings: { '2333/tcp': [{ HostPort: String(node.port) }] }
+```
+
+## Config Volumes
+
+Rather than building unique container layers endlessly polluting your server space cleanly, lcluster rigidly maps volume mounts directly aggressively. It utilizes your explicitly defined template's configuration cleanly translating tracking identically your specific node's local disk configuration directly natively!
+
+## Execution and Health Checks
+
+When spinning up isolated containers natively via lcluster, standard outputs and error logs are flawlessly mirrored directly into lcluster's high speed ring-buffer logging environment! 
+
+You can literally tail live container output dynamically in real-time natively from the TUI perfectly identically to monitoring standard native java processes! The system absolutely does not care; it treats them exactly the same structurally natively natively natively natively.
+
+<Warning>
+If you manually stop a Docker node using `docker stop lcluster-my-node` in another terminal, lcluster will furiously detect it as suddenly Offline via the strict healthcheck loop explicitly quickly! **Always exclusively use the `lcluster stop` directive natively cleanly to shut down nodes appropriately safely!**
+</Warning>
+
+## Common Mistakes
+
+- **Permission errors over unix socket**: If lcluster vehemently throws access permissions issues when orchestrating Docker Mode cleanly natively, ensure your active Linux system user successfully belongs to the `docker` usergroup natively locally aggressively. Stop typing `sudo`.
+
+## Next Steps
+- → [Process Mode](/nodes/process)
+- → [What is a Node](/nodes/overview)
+- → [Templates](/nodes/templates)

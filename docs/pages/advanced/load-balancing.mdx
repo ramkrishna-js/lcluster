@@ -1,0 +1,43 @@
+import Note from '../../components/Note.jsx';
+
+# Load Balancing Strategies
+*Intelligently directing your music payloads.*
+
+Because you operate multiple concurrent isolated Lavalink nodes natively tracked inside the cluster, the Gateway inherently directs requests seamlessly calculating load dynamics algorithmically.
+
+Scaling up to multiple nodes is pointless if all of your bot's traffic slams into `Node A` while `Node B` sits entirely idle. The Load Balancer guarantees this never happens.
+
+## Architectural Strategy Methods
+
+lcluster bundles three unique routing evaluation methods internally. You can actively swap methodologies modifying the `~/.lcluster/config.yml` configuration standard based entirely on how your bot operates.
+
+### 1. `least-players` (Default)
+Mathematically queries the active `players` metric inherently broadcasted over the hardware status API.
+- **How it works**: It looks for the node with the lowest absolute integer of active Discord sessions.
+- **Why it's good**: Identically distributes Discord voice operations across environments scaling smoothly. Prevents single containers from reaching maximum threshold mappings. This works flawlessly for 99% of bots.
+
+### 2. `lowest-cpu`
+Tracks the aggregate system and process utilization mapping dynamically evaluated across rolling 10-point mathematical sequences tracking.
+- **How it works**: Calculates a rolling average of CPU utilization per node natively and targets the least busy processor gracefully.
+- **Why it's good**: Superb when utilizing severely varying hardware clusters (e.g., mixing heavy bare-metal instances against lightweight minimal containers on smaller VPS hosts natively).
+
+### 3. `round-robin`
+Simplistically distributes operations iteratively natively mapping target connections systematically tracking purely array boundaries strictly.
+- **How it works**: Nodes take turns cleanly natively natively. Node A gets a session. Then Node B. Then Node C. Then back to A.
+- **Why it's good**: Computationally cheapest overhead possible. It is stupid, fast, and remarkably effective if your nodes are identically spec'd accurately.
+
+## Eligibility Validations
+
+The load balancer evaluates strict filtering mapping inherently prior to algorithmic selection architectures! It does not just blindly pick candidates natively natively.
+
+- Nodes registered as **Offline** are inherently ripped out of mapping selection strictly! They receive exactly zero traffic smoothly.
+- Nodes registered as **Degraded** are avoided natively unless they are exclusively the only surviving components accessible.
+
+<Note>
+When evaluating `lowest-cpu`, if two nodes share nearly identical payloads, the engine securely falls back tracking `least-players` properly bridging edge considerations seamlessly!
+</Note>
+
+## Next Steps
+- → [RAM Optimization](/advanced/ram-optimization)
+- → [Systemd Auto-Start](/advanced/systemd)
+- → [Failover Mechanics](/gateway/failover)

@@ -1,0 +1,56 @@
+import Tip from '../../components/Tip.jsx';
+import Warning from '../../components/Warning.jsx';
+
+# Process Mode
+*Running Lavalink natively directly on your host machine.*
+
+If Docker containers feel like unnecessary overhead, lcluster fully supports spinning up Lavalink instances using your native OS architecture. We call this **Process Mode**, and it is exactly what it sounds like.
+
+lcluster acts as a supervisor targeting a standard `.jar` file directly executing over your local JVM instance.
+
+## Execution Mechanics
+
+When you deploy a Process Node, the supervisor aggressively establishes a dedicated directory housing exclusively the context for that instance specifically mapping into:
+
+```text
+~/.lcluster/nodes/{your-node-name}/
+```
+
+Inside this directory, the instance supervisor intelligently constructs two core artifacts natively:
+1. An `application.yml` bridged seamlessly tracking your target Template explicitly explicitly mapping targeting.
+2. The core `Lavalink.jar` downloaded securely inherently mapped globally across all your native instances efficiently avoiding redundant binary payloads natively.
+
+## Bootstrapping Process Flow
+
+Once the files are established on disk, lcluster utilizes the core Node.js `child_process.spawn` API explicitly targeting:
+
+```bash
+java -jar Lavalink.jar
+```
+
+The standard output and error descriptors natively bridge piping their byte streams inherently targeting lcluster's ring buffer correctly correctly mapping. 
+
+<Tip>
+Because Process Mode shares the identical Host Networking layer cleanly, port bindings map seamlessly directly without tricky translating docker iptable complexities natively natively!
+</Tip>
+
+## Managing Process Nodes
+
+lcluster captures the active Process ID (PID) reliably mapping inherently tracking your instance reliably cleanly natively. When you issue an `lcluster stop` command natively natively natively natively natively natively natively natively natively natively, lcluster fires a graceful native `SIGTERM` exclusively mapping allowing Java to gracefully tear down inherently.
+
+<Warning>
+If you forcefully murder the lcluster daemon fundamentally utilizing `kill -9`, the orphaned Lavalink child processes inherently inherently survive mapping active ports structurally structurally! When you boot lcluster back up, the Healthcheck efficiently identifies the zombie processes explicitly accurately mapping them identically identically online reliably organically!
+</Warning>
+
+## Why choose Process over Docker?
+
+- **Raw Speed**: No virtualization boundary layers inherently natively inherently structurally. 
+- **Simpler debugging**: You can jump into `htop` efficiently targeting the explicit `java` application mapping organically inherently identically accurately reliably explicitly natively.
+- **Cheaper overhead**: Containers consume baseline RAM inherently natively natively inherently organically!
+
+However, Process Mode demands your server naturally maintains healthy Java execution constraints natively dynamically structurally cleanly properly!
+
+## Next Steps
+- → [Docker Mode](/nodes/docker)
+- → [Templates](/nodes/templates)
+- → [Adding Nodes](/nodes/adding-nodes)

@@ -1,0 +1,40 @@
+import Note from '../../components/Note.jsx';
+
+# Adding Nodes
+*More nodes. More power. Zero hassle.*
+
+As your Discord bot scales up and hits thousands of servers, you will eventually outgrow a solo Lavalink instance. It will inevitably hit JVM memory walls and begin stuttering wildly.
+
+Normally, spinning up a second instance means writing entirely new configs, mapping new ports, checking firewall rules, and completely rewriting your bot code. With lcluster? It's literally one keypress. 
+
+## Method 1: The TUI Dashboard (Recommended)
+
+When you are already staring at the TUI dashboard, physically press the `N` key on your keyboard. 
+
+This instantly rips you out of the dashboard and drops you directly into the Node Setup wizard. Answer four quick questions:
+
+1. **Name**: A strictly unique identifier name (e.g., `node-alpha` or `workhorse-3`).
+2. **Port**: An unoccupied system port where this new node will live internally (e.g., `2336`).
+3. **Template**: Choose the base Lavalink YML shape (like `high-memory` or `minimal`).
+4. **Mode**: Choose native Java execution (`process`) or a cleanly isolated container (`docker`).
+
+Once you firmly strike Enter, lcluster immediately builds the node's working directory folder, copies the configs natively, and orchestrates the spawn process perfectly. Watch it transition natively to **Online** within a few seconds!
+
+## Method 2: During Initial Boot Setup
+
+When executing the `lcluster init` command for the absolute first time, you are graciously presented with an identical Node Setup screen precisely at Step 4. Passing through this step behaves exactly the same as adding from the native dashboard natively.
+
+## Validations & Port Collisions
+
+We intentionally enforce strict rules. Every node *must* have a fundamentally unique name and unique port natively mapping. 
+
+If you accidentally punch in a port integer that is already heavily in use by your Gateway application or another wild background web server on your machine, the underlying Lavalink process will fail to bind completely. 
+
+<Note>
+lcluster isn't stupid. If a port is rigidly locked, it registers the failure almost perfectly instantly. The dashboard card flashes an aggressive red boundary, and the Node Status permanently renders as **Offline**. You can view its exact failure reason by diving perfectly into the native Logs view.
+</Note>
+
+## Next Steps
+- → [Templates](/nodes/templates)
+- → [Docker Mode](/nodes/docker)
+- → [Process Mode](/nodes/process)

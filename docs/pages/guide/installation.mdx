@@ -1,0 +1,67 @@
+import Warning from '../../components/Warning.jsx';
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+
+# Installation
+*How to get lcluster onto your server.*
+
+Installing `lcluster` is straightforward. It runs directly via Node.js and sits globally on your system so you can access it from any directory. Assuming you already met the [Requirements](/guide/requirements), this takes about thirty seconds.
+
+## Option A: Global NPM Install (Recommended)
+
+One command. That's all it takes. Go ahead:
+
+```bash
+npm install -g lcluster
+```
+
+## Option B: Install from GitHub
+
+If you prefer building from source, or want the absolute bleeding edge features, use git to clone the repository and link it.
+
+```bash
+git clone https://github.com/yourname/lcluster.git
+cd lcluster
+npm install
+npm link
+```
+
+## Verifying the Installation
+
+If that worked, congratulations. If it didn't, check that Node.js 18+ is installed. We'll wait.
+
+After installing successfully, verify the binary is mapped to your path correctly:
+
+```bash
+lcluster --version
+```
+
+If it prints a version number, you are fully operational.
+
+## What Gets Installed
+
+Upon its first execution, lcluster creates a persistent folder in your user's home directory. This is the brain of the operation. Everything is contained here cleanly.
+
+```text
+~/.lcluster/
+├── config.yml          # Theme and gateway connection settings
+├── nodes.json          # Registry tracking all your nodes
+├── nodes/              # Working directories for Java processes
+└── templates/          # Base Lavalink yml templates
+```
+
+<Warning>
+Do not manually edit `nodes.json` unless lcluster is completely shut down! The CLI holds the active node array tightly in memory and will brutally overwrite your manual changes the next time it syncs its state to the disk. Use the TUI to manage nodes safely.
+</Warning>
+
+## Troubleshooting
+
+Nothing is perfect. Here's how to fix common gripes:
+
+- **EACCES Error on NPM Install**: If you get a terrifying block of red text screaming about permissions, it means your global node directory requires root access. You can either run the command with `sudo` (not recommended but functional) or swap your environment over to NVM (Node Version Manager) which fixes npm permission issues permanently.
+- **"command not found" on GitHub Install**: Ensure that the `npm link` operation actually succeeded. If it did, your shell likely does not have global NPM binaries added to the `$PATH`.
+
+## Next Steps
+- → [Hello World](/guide/hello-world)
+- → [Init Wizard](/guide/init)
+- → [TUI Overview](/tui/overview)

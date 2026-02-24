@@ -1,0 +1,49 @@
+import Warning from '../../components/Warning.jsx';
+
+# Session Handling
+*How lcluster actually tracks who is listening to what.*
+
+When your Discord bot sends an instruction to Lavalink saying "play this track in Voice Channel X," Lavalink natively ties that action to a **Session ID**. This string uniquely identifies the active Discord Voice structural connection.
+
+Normally, the Node running that session is the only thing on the internet inherently aware that the session actually exists. lcluster dramatically changes this paradigm gracefully.
+
+## The Global Session Map
+
+Every single time your bot creates, updates, or destroys a player session, that REST HTTP request fundamentally passes through the Gateway.
+
+Because the Gateway acts as a rigorous traffic inspector, it casually reads the URL paths mapping your payloads dynamically. When it sees an incoming `/v4/sessions/{sessionId}` request, it violently intercepts that `sessionId` and logs it carefully into a structural **Session Map**.
+
+It is just a JavaScript Map. Not a database. Not Redis. Not a spreadsheet. A Map. Two strings. Blazing fast. Zero drama.
+
+```javascript
+// A simplified visualization of the internal router Map mapping
+sessionMap.set("1234abc_session", "node-workhorse-1");
+```
+
+## The Guild Map fallback
+
+Not all Lavalink endpoints gracefully include the `sessionId` identically organically. Some older payload structures strictly rely on the Discord Server ID (the `guildId`). 
+
+To prevent these naked requests from vanishing into the void cleanly, the Gateway maintains a secondary **Guild Map**.
+
+```javascript
+// Secondary map ensuring guild requests land cleanly natively
+guildMap.set("987654321_guild", "node-workhorse-1");
+```
+
+<Warning>
+If a developer explicitly tries to send a `PATCH` request dynamically to an entirely fake Session ID that the Gateway structurally never registered, the Gateway will violently reject the connection with an HTTP 404 precisely flawlessly organically accurately natively mimicking native Lavalink behavior!
+</Warning>
+
+## Purging Stale Sessions
+
+We hate memory leaks fundamentally. 
+
+When your bot explicitly tells Lavalink natively to `DELETE /v4/sessions/{sessionId}`, the Gateway explicitly natively accurately organically inherently gracefully tears that mapping securely strictly out of its active Maps. 
+
+Furthermore cleanly organically, if the exact underlying websocket strictly natively drops connection natively mapping organically effectively natively, the Gateway intelligently sweeps securely mapping sweeping identically cleanly natively natively identically cleaning up stale keys aggressively protecting your RAM footprint accurately.
+
+## Next Steps
+- → [Failover Mechanics](/gateway/failover)
+- → [RAM Optimization](/advanced/ram-optimization)
+- → [Advanced Routing](/gateway/how-routing-works)

@@ -1,0 +1,57 @@
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+
+# What is a Node?
+*Your audio workhorses, tamed.*
+
+If lcluster is the brain, the Nodes are the muscle.
+
+In plain English, a **Node** represents a single, independent, physical running Lavalink server instance. 
+Normally, you boot a node and pray it never crashes. Here, you boot a node, lcluster wraps a leash around it, and forces it to behave. Instead of tracking each node's IP, port, and crash logs manually across a bunch of sticky notes, lcluster completely abstracts it away.
+
+## The Local Registry
+
+When you create nodes, lcluster rigorously tracks them in an internal registry file permanently stored on your system:
+
+```text
+~/.lcluster/nodes.json
+```
+
+This tiny file is the holy grail. It tracks every node's given name, assigned internal port, chosen YAML template, and whether it runs as a docker container or a bare metal java process. You should absolutely never modify this JSON yourself. Allow the TUI to handle the File I/O naturally.
+
+## How Health Checks Keep Things Sane
+
+Every 5,000 milliseconds (5 seconds), the Smart Gateway reaches out to each node's native hardware monitoring endpoint. It essentially asks, "Hey, are you alive in there?"
+
+Based on the response latency and payload, lcluster categorizes every node into three specific moods:
+
+1. **Online (●)**  
+   The node responds quickly and perfectly within the strict 3000ms timeout window. It is eager for work and handles active player traffic flawlessly.
+   
+2. **Degraded (⚠)**  
+   The node failed **three consecutive health checks**. It is sluggish, dropping packets, or gasping for CPU. The Gateway stops sending fresh sessions here unless it absolutely has no other option.
+   
+3. **Offline (✕)**  
+   The node failed **six consecutive health checks** or its native child process aggressively died. The Gateway mercilessly rips this node entirely out of the load balancer pool and triggers immediate session failover mapping.
+
+<Note>
+Nodes bounce back. If a node transitions back to Online after being Offline (maybe you rebooted it), lcluster sees the green flag and gracefully begins handing it freshly requested Discord Voice payloads natively.
+</Note>
+
+## The TUI View
+
+When you sit at the Dashboard TUI, you can view your running nodes inside the main central table dynamically tracking their vitals natively.
+
+You watch their metrics natively update:
+- Total active player connections.
+- Round-trip ping telemetry aggressively tracking latency.
+- Operating System CPU & absolute RAM consumption explicitly.
+
+<Tip>
+We strongly recommend running at least 2 nodes perpetually. It costs marginally more memory, but taking advantage of lcluster's zero-downtime failover handling ensures your music bot feels wildly premium.
+</Tip>
+
+## Next Steps
+- → [Adding Nodes](/nodes/adding-nodes)
+- → [Understanding Templates](/nodes/templates)
+- → [Gateway Overview](/gateway/overview)

@@ -1,0 +1,56 @@
+# ─── Docs Site ──────────────────────────────────────
+docs/
+
+# ─── Dev Config ─────────────────────────────────────
+.env
+.env.*
+.eslintrc*
+.eslintignore
+.prettierrc*
+.prettierignore
+.editorconfig
+.babelrc
+jest.config.*
+nodemon.json
+
+# ─── Tests ──────────────────────────────────────────
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# ─── CI & GitHub ────────────────────────────────────
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+Jenkinsfile
+
+# ─── Editor ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── OS ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Logs ───────────────────────────────────────────
+*.log
+logs/
+
+# ─── Temp ───────────────────────────────────────────
+tmp/
+temp/
+.tmp/
+.cache/
+
+# ─── Misc ───────────────────────────────────────────
+.git/
+.gitignore
+CONTRIBUTING.md
+CHANGELOG.md

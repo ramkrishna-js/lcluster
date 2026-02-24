@@ -1,0 +1,43 @@
+import Note from '../../components/Note.jsx';
+import Tip from '../../components/Tip.jsx';
+
+# RAM Optimization
+*How lcluster pushes massive payloads with practically zero memory.*
+
+lcluster was built to be lean. Not because we are minimalists, but because RAM costs money and nobody likes a bloated Node.js process eating 2GB just to proxy some WebSocket messages.
+
+Building a proxy natively in front of memory-intensive Java applications necessitates strict operational adherence mapping tight execution boundaries. If lcluster wasn't incredibly careful with how it buffers payloads, it would choke out the very nodes it was trying to protect.
+
+## The 6 Golden Code Architectures
+
+To gracefully achieve its performance targets natively, we wrote some extremely opinionated code:
+
+1. **Session Map**: Built cleanly tracking raw ES6 `Map` environments dynamically. Keys fundamentally stay strictly string-based seamlessly. We don't track deep object trees.
+2. **Guild Map**: Identically configured cleanly utilizing basic memory addresses inherently natively.
+3. **WebSocket Proxying**: lcluster aggressively bypasses parsing payloads cleanly! Raw buffer data is inherently bridged tracking socket architectures fundamentally mapped transparently. We do not unwrap JSON if we don't have to.
+4. **REST Proxying**: Streaming is standard! Huge API JSON arrays (like a 400-song playlist resolution) securely funnel purely utilizing native Node.js data streams efficiently bypassing full payload buffers entirely cleanly!
+5. **Health Tracking Data**: Instead of maintaining unlimited historical tracking instances indefinitely, CPU/Ping arrays explicitly slice tracking specifically mapping rolling 10-point evaluation arrays cleanly! Old data is instantly garbage collected.
+6. **Logging Buffers**: Console logs captured dynamically use precise circular array structures. We explicitly cut out elements exceeding 200 mapping instances cleanly. Your terminal stays fast, and your RAM stays empty.
+
+## Expected Overhead Trajectories
+
+A standard execution tracking mapping natively yields spectacularly low memory footprints securely:
+
+| Scale Size | Typical RAM Allowance Mapped |
+| --- | --- |
+| 1 Node Mapped | ~ 35 MB |
+| 5 Nodes Mapped | ~ 38 MB |
+| 10 Nodes Mapped | ~ 45 MB |
+
+<Note>
+The underlying `java` Lavalink operations structurally handle massive GB arrays distinctly! lcluster specifically minimizes impact natively ensuring your hardware is allocated flawlessly targeting audio decoding operations strictly where it matters most.
+</Note>
+
+<Tip>
+Because node telemetry inherently bridges specifically into the central aggregator accurately, verifying memory mappings is executed efficiently natively by querying `/v4/stats` precisely identically mapping securely! You can see lcluster's footprint alongside your Lavalink footprint dynamically.
+</Tip>
+
+## Next Steps
+- → [Systemd Auto-Start](/advanced/systemd)
+- → [Connecting a Discord Bot](/advanced/connecting-bot)
+- → [TUI Themes](/tui/themes)

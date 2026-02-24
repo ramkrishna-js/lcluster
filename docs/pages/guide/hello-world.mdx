@@ -1,0 +1,123 @@
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+import Warning from '../../components/Warning.jsx';
+
+# Hello World
+
+Let's get something playing. By the end of this page you will have lcluster running, a node up, and your bot connected. Five minutes. Let's go.
+
+## Step 1 — Make sure you installed lcluster
+
+First things first, verify that the CLI actually exists on your machine. 
+
+```bash
+lcluster --version
+```
+
+If you see a version number pop up, you are good. If not, go back to the [Installation](/guide/installation) page. We'll wait.
+
+## Step 2 — Run Init
+
+Our setup wizard takes care of all the boilerplate. Run the initialization command to get started.
+
+```bash
+lcluster init
+```
+
+Walk through each step of the wizard quickly. You can read the full [Init Wizard](/guide/init) page later for the deep details. For now, hit Enter to accept the defaults, choose your theme, and spin up your first node.
+
+<Tip>
+Pick any theme for now. You can change it any time from the Settings screen inside the dashboard. We recommend Neon if you want to feel like a hacker.
+</Tip>
+
+## Step 3 — Open the Dashboard
+
+Time to see the fruits of your labor. Drop into the dashboard.
+
+```bash
+lcluster
+```
+
+You should see your first node listed right there in the panel. If its status dot is green, it is running perfectly.
+
+<Note>
+If the node shows as degraded or offline right after init, give it 10-15 seconds. Lavalink takes a moment to fully start up. The healthcheck will pick it up automatically.
+</Note>
+
+## Step 4 — Connect Your Bot
+
+Here is the magic trick. You don't configure your bot to talk to the node you just created. You configure it to talk to the Gateway.
+
+Below are code examples for the most popular Discord Lavalink clients.
+
+### Riffy
+
+```js
+const nodes = [
+  {
+    host: "localhost",
+    port: 2333,
+    password: "yourpassword",
+    secure: false,
+    name: "lcluster"
+  }
+]
+
+const client = new Riffy(discordClient, nodes, {
+  send: (payload) => {
+    const guild = discordClient.guilds.cache.get(payload.d.guild_id)
+    if (guild) guild.shard.send(payload)
+  },
+  defaultSearchPlatform: "ytmsearch",
+  restVersion: "v4"
+})
+```
+
+### Shoukaku
+
+```js
+const nodes = [
+  {
+    name: 'lcluster',
+    url: 'localhost:2333',
+    auth: 'yourpassword'
+  }
+]
+
+const shoukaku = new Shoukaku(new Connectors.DiscordJS(client), nodes)
+```
+
+<Note>
+Notice that the host and port point to lcluster — not to any individual Lavalink node. lcluster handles routing everything behind the scenes. Your bot has no idea there is a whole cluster back there.
+</Note>
+
+## Step 5 — Play Something
+
+Let's actually push some audio. Show a minimal play example using Riffy:
+
+```js
+const player = client.riffy.createConnection({
+  guildId: interaction.guild.id,
+  voiceChannel: interaction.member.voice.channel.id,
+  textChannel: interaction.channel.id,
+  deaf: true
+})
+
+const resolve = await client.riffy.resolve({
+  query: 'lofi hip hop',
+  requester: interaction.user
+})
+
+const track = resolve.tracks.shift()
+player.queue.add(track)
+if (!player.playing) player.play()
+```
+
+That's it. You just connected a Discord bot to a full Lavalink cluster. Welcome to lcluster. 🎵
+
+From here you can explore adding more nodes, switching templates, or diving into how the gateway handles sessions behind the scenes.
+
+## Next Steps
+- → [Adding Nodes](/nodes/adding-nodes)
+- → [Templates](/nodes/templates)
+- → [Session Handling](/gateway/session-handling)

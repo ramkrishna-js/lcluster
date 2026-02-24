@@ -1,0 +1,72 @@
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+import Warning from '../../components/Warning.jsx';
+
+# Requirements
+*What you need on your machine before running lcluster.*
+
+Look, we want this to be as painless as possible. But proxying audio streams and orchestrating Java processes means we need some specific foundational tools already residing on your machine.
+
+Here is the rundown of exactly what lcluster expects to find when it boots up.
+
+## Node.js Implementation
+
+lcluster itself is written as a native ECMAScript module and heavily leverages modern asynchronous patterns and modern standard library features.
+
+- **Minimum Version**: Node 18.x
+- **Recommended**: Node 20.x or newer
+
+If you try to run lcluster on Node 16 or below, it will violently crash because of missing `fetch` API standards and ES module binding incompatibilities. Do yourself a favor and upgrade.
+
+```bash
+node -v
+```
+
+<Tip>
+If you manage multiple Node versions on your server, consider using NVM (Node Version Manager) to lock your environment to Node 20.
+</Tip>
+
+## The Java Virtual Machine
+
+Lavalink is written in Java. If you plan on using **Process Mode** (the default behavior where lcluster directly manages `.jar` files), you absolutely must have a Java runtime installed.
+
+- **Minimum Version**: Java 17
+- **Recommended**: Java 17+ (LTS releases preferred)
+
+To check your Java version, pop into your terminal:
+
+```bash
+java -version
+```
+
+<Note>
+If you do not want to install Java on your host machine, you can entirely bypass this requirement by running your nodes in **Docker Mode**.
+</Note>
+
+## Docker Daemon (Optional)
+
+If native Java processes feel too messy for your pristine server environment, lcluster fully supports spinning up Lavalink containers using the official Docker images.
+
+To use Docker Mode, your system must have the Docker daemon running, and your current user must have permissions to interact with the Docker socket without typing `sudo`.
+
+```bash
+docker ps
+```
+
+If that command throws a permission denied error, lcluster will run into the exact same wall. Fix your user group permissions before proceeding.
+
+<Warning>
+Running Docker inside of another Docker container (Docker-in-Docker) is fraught with networking peril. We strongly advise running lcluster natively on the host if it will be orchestrating Dockerized nodes.
+</Warning>
+
+## Network Ports
+
+The gateway needs somewhere to live, and nodes need unique homes. You must ensure:
+- Port `2333` (or your chosen Gateway port) is completely free and not occupied by an old Lavalink instance you forgot to turn off.
+- Your server's firewall allows incoming connections on the Gateway port if your Discord bot lives on a different physical server.
+
+Got all that? Excellent. Let's move on.
+
+## Next Steps
+- → [Installation](/guide/installation)
+- → [Introduction](/guide/introduction)

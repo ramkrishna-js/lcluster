@@ -1,0 +1,49 @@
+import Tip from '../../components/Tip.jsx';
+
+# TUI Overview
+*Because managing backend infrastructure should actually look amazing.*
+
+Running complicated distributed stateful services usually involves staring at a dull monochrome log file violently scrolling past errors you can barely read.
+
+We decided to fix that. 
+
+The dashboard fundamentally inside lcluster is built beautifully upon [Ink](https://github.com/vadimdemedes/ink) utilizing React component structures explicitly rendering dynamic visuals natively inside standard POSIX terminal alt-buffers! It feels like a native desktop application, but entirely isolated dynamically within your SSH session perfectly!
+
+## The Rendering Paradigm
+
+Invoking the `lcluster` command initiates the TUI strictly mapping to your active active console dimensions smartly.
+
+Because it utilizes an **alt-buffer** architecture cleanly, it fundamentally operates without polluting or spamming your beloved shell history files securely! Furthermore:
+
+- Mouse clicking support translates accurately against physical visual node structures flawlessly tracking layouts seamlessly.
+- It leverages targeted graphical isolated rendering mapping directly virtual-DOM React methodologies. 
+
+Unlike aging python curses dashboards mapping brutal massive redraw loops, *only* the specific updated components (like a ping ticking up by 2ms) will redraw securely! This achieves an incredibly lightweight flicker-free cinematic telemetry experience directly mapped inside your terminal naturally!
+
+## Screen Architectures
+
+The lcluster graphical environment isolates operations explicitly mapping five entirely distinct navigation pages actively:
+
+### 1. The Central Dashboard
+This is home. It surveys all recorded instances detailing exactly the topology of your architecture securely.
+
+### 2. Node Detail Target Panel
+An interactive explicitly contextual graphical right-side panel explicitly extracting individual underlying telemetry dynamically isolating JVM allocations cleanly.
+
+### 3. Templates Explorer
+A strictly full-page navigation layout intelligently targeting your `.yml` deployment architectures allowing you explicitly modify behaviors securely natively!
+
+### 4. Direct Logs Trailer
+A cleanly visually formatted real-time robust 200-line array ring buffer. It accurately securely plumbs standard instance outputs beautifully formatted explicitly.
+
+### 5. Settings Modal
+Your configuration target natively altering explicitly aggressive styling parameters or explicitly rewriting underlying proxy credentials cleanly!
+
+<Tip>
+Because lcluster dynamically executes heavily mapped JSX rendering architectures cleanly integrated entirely inside Node.js, parsing these modules requires definitively zero external manual build steps heavily!
+</Tip>
+
+## Next Steps
+- → [Navigation & Keybindings](/tui/navigation)
+- → [TUI Themes](/tui/themes)
+- → [Init Wizard](/guide/init)

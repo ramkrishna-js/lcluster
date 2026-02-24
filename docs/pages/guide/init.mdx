@@ -1,0 +1,57 @@
+import Warning from '../../components/Warning.jsx';
+import Tip from '../../components/Tip.jsx';
+
+# Init Wizard
+*Setting up your cluster without tearing your hair out.*
+
+Once you have installed the CLI, the very first command you should run is `lcluster init`. This launches an interactive Terminal UI that safely bootstraps your configuration across 5 simple steps. You do not have to write a single JSON or YAML file yourself if you do not want to.
+
+<Warning>
+Running `lcluster init` twice will not blow up your computer, but it will ask you to explicitly overwrite your existing config. Be careful if you have nodes already running smoothly in production. You might accidentally knock them offline if you change your port bindings.
+</Warning>
+
+## Step 1: System Check
+
+The wizard starts by judging your life choices and aggressively scanning your environment for required dependencies:
+- **Node.js**: Validates your engine version. If you are on an ancient Node 16 box, it warns you heavily.
+- **Java**: Checks for Java 17+. If missing entirely, standard Process Nodes will be locked and disabled.
+- **Docker**: Scans for the live docker daemon. If it cannot ping the socket, Docker Mode is disabled.
+- **Port 2333**: Ensures the default gateway port is currently unoccupied by another stray process holding on for dear life.
+
+## Step 2: Theme Picker
+
+Next, you get to pick the aesthetic for your dashboard. Available themes are:
+- **Cyberpunk Neon**: Green glow, screaming dark background. This is the default.
+- **Clean Minimal**: Soft purple, modern readability. Excellent if you want the TUI to blend into modern setups.
+- **Retro Amber**: Old-school amber phosphor CRT style. Perfect if you enjoy the feeling of managing critical infrastructure in a 1980s bunker.
+
+## Step 3: Gateway Setup
+
+The Gateway is the brain. You must provide two critical pieces of data to it:
+- **Port Target**: The single port your Discord Bot uses (default `2333`).
+- **Connection Password**: The authorization token used by your music bot to authenticate securely. Let's make it something stronger than `youshallnotpass`.
+
+## Step 4: Node Setup
+
+You can optionally instantiate your very first Lavalink node during this step!
+- Choose between copying a built-in **Template** (like `high-memory` or `minimal`) or skipping this completely for now.
+- Name your node and assign it a completely unique port to run on internally, far away from the gateway (e.g. `2334`).
+- Pick between **Process Mode** (native blisteringly-fast Java) and **Docker Mode** (isolated robust containers).
+
+## Step 5: Systemd Daemon (Linux Only)
+
+If lcluster detects Ubuntu or Debian operating systems, it offers a magical quality of life feature: an auto-start daemon installation.
+This ensures the cluster boots immediately whenever your hardware restarts.
+
+<Tip>
+You can always skip Step 4 during the wizard and spin up nodes dynamically from the Dashboard later by forcefully mashing the `N` key.
+</Tip>
+
+## Common Mistakes
+
+- **Port Collisions**: If your Node port violently overlaps with the Gateway port, the initialization sequence will inevitably fail to boot the underlying child process. Keep your nodes securely on separate distinct ports (e.g., 2334, 2335) from the gateway manager (2333).
+
+## Next Steps
+- → [CLI Commands](/guide/commands)
+- → [Dashboard Overview](/tui/overview)
+- → [Templates](/nodes/templates)

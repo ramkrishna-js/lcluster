@@ -1,0 +1,85 @@
+import Warning from '../../components/Warning.jsx';
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+
+# Connecting a Discord Bot
+*Bridging your architecture efficiently.*
+
+You have nodes. You have a gateway. You have a shiny terminal dashboard. Now what? Let's connect the actual bot that plays the music.
+
+lcluster's greatest trick is that it pretends to be a normal Lavalink server. Your bot does not need complex load balancing logic. It does not need a massive array of fallback nodes. It only needs the Gateway.
+
+## The Mental Shift
+
+Usually, a bot connects directly to `Node A`. If `Node A` dies, the bot's developer has to write custom logic to detect the failure, search for `Node B`, tear down the player, and reconstruct the session. 
+
+With lcluster, your bot connects to `lcluster`. If a node behind lcluster takes a dirt nap, lcluster handles the migration. Your bot experiences a brief networking hiccup and keeps rolling.
+
+## Supported Libraries
+
+Because we adhere strictly to the Lavalink V4 protocol API specs, essentially any modern Lavalink client wrapper works flawlessly right out of the box.
+
+### Riffy Configuration
+
+Riffy handles gateway interactions beautifully. Point your single node configuration exclusively at your lcluster port.
+
+```js
+const nodes = [
+  {
+    host: "localhost", // Or your lcluster server IP
+    port: 2333,        // Your Gateway Port
+    password: "yourpassword", // Your Gateway Password
+    secure: false,
+    name: "lcluster-gateway"
+  }
+]
+
+const client = new Riffy(discordClient, nodes, {
+  send: (payload) => {
+    const guild = discordClient.guilds.cache.get(payload.d.guild_id)
+    if (guild) guild.shard.send(payload)
+  },
+  defaultSearchPlatform: "ytmsearch",
+  restVersion: "v4"
+})
+```
+
+<Tip>
+Notice there is only ONE node array entry. Let lcluster do the heavy lifting.
+</Tip>
+
+### Moonlink Configuration
+
+Moonlink operates using identical architectural standards.
+
+```js
+const { MoonlinkManager } = require('moonlink.js');
+
+const manager = new MoonlinkManager(
+  [{
+      host: 'localhost',
+      port: 2333,
+      secure: false,
+      password: 'yourpassword',
+      identifier: 'MainGateway'
+  }], 
+  {
+      clientName: 'MusicBot/1.0',
+      clientIdentifiers: client.user.id
+  },
+  (guildId, payload) => {
+      client.guilds.cache.get(guildId)?.shard.send(payload);
+  }
+)
+```
+
+## Troubleshooting Connection Refusals
+
+If your bot refuses to connect to lcluster:
+1. **Did you use the Gateway Password?** A common mistake is using a node's internal password instead of the main Gateway password you configured during `lcluster init`.
+2. **Is lcluster actually running?** The daemon must be active. If you closed your terminal, lcluster died. Go set up [Systemd Auto-Start](/advanced/systemd) if you need it persistent.
+3. **Are any nodes Online?** If the Gateway is up, but exactly zero nodes are online, the WebSocket will connect but REST HTTP operations will return a solid 503 until a node comes back to life.
+
+## Next Steps
+- → [Session Handling](/gateway/session-handling)
+- → [Failover Mechanics](/gateway/failover)

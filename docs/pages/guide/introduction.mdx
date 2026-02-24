@@ -1,0 +1,57 @@
+import Note from '../../components/Note.jsx';
+import Tip from '../../components/Tip.jsx';
+
+# Introduction
+*What is lcluster and why do you need it?*
+
+You ever spin up three different Lavalink servers, forget which one is running on which port, and accidentally restart the wrong one mid-song? Yeah. lcluster exists because of exactly that moment.
+
+**lcluster** is a Node.js-based CLI tool and Terminal User Interface (TUI) that behaves as an autonomous manager and load-balancer for your Lavalink audio nodes. 
+
+## The Problem
+Managing multiple Lavalink instances is notoriously messy. You usually have to manually configure each node's IP, port, password, and memory arguments. Then you have to update your Discord bot's configuration to know about all these nodes. When a node inevitably panics and dies, you need custom code in your bot to move players around safely to surviving nodes. 
+
+If you are running a massive bot, you probably already wrote that custom logic. For everyone else, it is a massive headache.
+
+## The Solution
+`lcluster` takes an entirely different approach by placing a **Smart Gateway** in front of your nodes. Your Discord Music Bot only connects to *one single address* (the lcluster gateway). The gateway handles spawning, scaling, routing, and failing over connections without the bot even noticing that the floor moved underneath it.
+
+<Note>
+Your bot believes it is talking to one massive, invincible Lavalink instance. It has no idea there is a swarm of tiny nodes working desperately behind the curtain.
+</Note>
+
+## High-Level Architecture
+
+Here is how the data flows when you boot lcluster up in the real world:
+
+```text
+Discord Music Bot  --->  ws://localhost:2333 (lcluster Gateway)
+                                   │
+                           [Load Balancer]
+                                   │
+               ┌───────────────────┼───────────────────┐
+               ▼                   ▼                   ▼
+        Node 1 (Docker)     Node 2 (Process)    Node 3 (Process)
+        Port: 2334           Port: 2335           Port: 2336
+        Status: Online       Status: Online       Status: Degraded
+```
+
+The gateway parses incoming HTTP requests, figures out which node currently owns a session, and surgically funnels the REST path exactly where it needs to go. If Node 3 crashes, the gateway catches the resulting 502 Bad Gateway error and sweeps the session over to Node 2 before the Discord Voice connection drops.
+
+<Tip>
+Move on to the [Hello World](/guide/hello-world) guide to get your first node running in less than five minutes!
+</Tip>
+
+## Next Steps
+- → [Requirements](/guide/requirements)
+- → [Hello World](/guide/hello-world)
+- → [Gateway Overview](/gateway/overview)
+
+## Who Built This
+
+lcluster was built by **Ram Krishna** with AI assistance from **Claude (Anthropic)**.
+The entire architecture — from the gateway session map to the Ink-based TUI —
+was planned collaboratively and built with care.
+
+This is what modern solo development looks like.
+One developer, one AI, one very solid cluster manager.

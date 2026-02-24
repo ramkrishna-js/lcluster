@@ -1,0 +1,50 @@
+import Warning from '../../components/Warning.jsx';
+import Tip from '../../components/Tip.jsx';
+import Note from '../../components/Note.jsx';
+
+# How Routing Works
+*The traffic cop of the lcluster ecosystem.*
+
+When a request slams into the lcluster gateway, the system has mere milliseconds to evaluate what that request actually is, where it needs to go, and how best to get it there.
+
+Think of routing as the intelligent nervous system connecting your Discord bot seamlessly to your physical server processes. Here is exactly how that traffic cop operates.
+
+## Step 1: Request Identification
+
+The Gateway proxy server intercepts every single incoming HTTP or WebSocket frame directed at port 2333. It broadly categorizes the payload into three distinctly isolated pipelines:
+
+1. **Passive Telemetry**: Things like `/v4/info` or `/v4/stats` queries asking for generic cluster data.
+2. **Stateful Session Data**: Any request directed at `/v4/sessions/...` intended to modify a running audio track or alter an active Discord voice connection.
+3. **Stateless Workloads**: Track resolution lookups via `/v4/loadtracks` where no session hash matters.
+
+<Note>
+Because Lavalink strictly enforces the `/v4` REST prefix architectures, the router regex evaluations are exceptionally fast. Unrecognized trajectories immediately yield a flat `HTTP 404` rejection.
+</Note>
+
+## Step 2: Payload Distribution
+
+Depending entirely on the category identified, the routing logic branches flawlessly.
+
+### Passive Telemetry Pipeline
+For endpoints like `/v4/stats`, lcluster bypasses nodes completely. It queries its own internal Memory cache summarizing every single active node metric simultaneously. The router perfectly compiles a massive JSON payload mathematically representing the *entire cluster* as if it were one giant instance. 
+
+### Stateless Workloads Pipeline
+When your bot requests metadata to solve a Spotify track search via `/v4/loadtracks`, the router asks the Load Balancer: "Who has the lowest CPU right now?" The Load Balancer replies with a Node target. The router flawlessly pipes the request to that specific Node.
+
+### Stateful Session Pipeline
+Here is where routing gets surgical. A PATCH request altering `volume` on an active player *must* reach the exact Node running that player. The router rips the `sessionId` out of the URL path, checks the `sessionMap` index, dynamically resolves the physical target Node, and directly funnels the HTTP stream parameters explicitly hitting that solitary process.
+
+## Step 3: Stream Forwarding
+
+lcluster fundamentally relies on the `http-proxy` Node module executing the final delivery.
+
+Rather than buffering massive HTTP JSON responses identically inside RAM arrays, the router pipes standard Node.js native incoming network streams forcefully into outbound target streams. This architecture ensures the Gateway itself consumes barely any measurable memory overhead even when querying massive 2-megabyte playlist arrays!
+
+<Warning>
+If the router encounters an active session request mapping into a node that recently aggressively crashed or is structurally Offline, the proxy will temporarily reject the modification until the Session migrates gracefully.
+</Warning>
+
+## Next Steps
+- → [Session Handling](/gateway/session-handling)
+- → [Failover Mechanics](/gateway/failover)
+- → [Gateway Overview](/gateway/overview)

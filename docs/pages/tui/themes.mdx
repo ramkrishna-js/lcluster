@@ -1,0 +1,59 @@
+import Tip from '../../components/Tip.jsx';
+
+# TUI Themes
+*Because looking cool while fixing servers is mandatory.*
+
+We didn't build a massive React-based terminal application just to render white text on a black background. Since lcluster renders dynamically, it officially supports rich 24-bit color matrices flawlessly translated straight into your terminal emulator.
+
+Out of the box, lcluster natively ships with three distinct aesthetic palettes. Take your pick.
+
+## 1. Cyberpunk Neon (Default)
+
+The classic. The default. Built specifically for immediate aggressive readability against dark terminal backgrounds. If you want to feel like a movie hacker breaking into a mainframe while you manage Lavalink, this is the one.
+
+```text
+ ⬡ lcluster v1.0.0      gateway → localhost:2333  ●
+```
+
+| Element | Hex Code | Purpose |
+| --- | --- | --- |
+| Accent | `#00ff9f` | The bright teal selector and icon coloring. |
+| Background | `#080b14` | The deep navy black void. |
+| Border | `#1b2234` | Dimmed UI frames. |
+| Text | `#f0f4ff` | High contrast typography. |
+| Online | `#00ff9f` | It works! |
+| Degraded | `#ffb86c` | It's struggling! |
+| Offline | `#ff5555` | It's dead! |
+
+## 2. Clean Minimal
+
+Sometimes you want lcluster to fade into the background cleanly alongside your modern desktop environment. We mapped this soft layout heavily tracking modern readable pastel aesthetics natively. Excellent for brighter environments or people who think neon is too aggressive.
+
+| Element | Hex Code | Purpose |
+| --- | --- | --- |
+| Accent | `#cba6f7` | Catppuccin soft purple. |
+| Background | `#1e1e2e` | Smooth dark workspace. |
+| Border | `#313244` | Gentle dividing lines. |
+| Text | `#cdd6f4` | Easy on the eyes typography. |
+| Online | `#a6e3a1` | Pastel green confirmation. |
+
+## 3. Retro Amber
+
+A brutal, heavy homage addressing old CRT monitor structures directly. If you enjoy the feeling of managing critical backend infrastructures in a 1980s nuclear bunker, boot this up. The contrast is highly tuned natively.
+
+| Element | Hex Code | Purpose |
+| --- | --- | --- |
+| Accent | `#ffb347` | Blinding warning amber. |
+| Background | `#0d0800` | Pure pitch black OLED. |
+| Border | `#4a3000` | Rusted paneling. |
+| Text | `#ffcc80` | Glowing monochrome typography. |
+| Offline | `#803300` | Dim burned-in failure indicator. |
+
+<Tip>
+Tired of the Neon? Strike the `S` keystroke anywhere in the TUI to drop into the Settings panel, and aggressively tap your left or right arrow keys to swap themes in absolute real-time.
+</Tip>
+
+## Next Steps
+- → [Adding Nodes](/nodes/adding-nodes)
+- → [Docker Mode](/nodes/docker)
+- → [Process Mode](/nodes/process)

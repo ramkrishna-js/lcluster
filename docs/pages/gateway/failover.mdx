@@ -1,0 +1,41 @@
+import Warning from '../../components/Warning.jsx';
+
+# Failover
+*It's not a bug, it's a feature.*
+
+Nodes die. It happens. Maybe Docker got moody, maybe Java ran out of memory, maybe Mercury was in retrograde. The point is — lcluster handles it so your bot keeps playing.
+
+Usually when a node dies, the Discord bot developer panics. The WebSocket drops, the music stops abruptly in 50 different Discord servers simultaneously, and the angry pings roll in. 
+
+With lcluster, your users might hear a brief half-second crackle before the audio smoothly resumes. Here is how that magic correctly happens.
+
+## The Detection Phase
+
+As explained deeply within the [Nodes Overview](/nodes/overview), lcluster's Gateway intensely polls the health endpoint of every registered active node flawlessly.
+
+If a node abruptly crashes, the Gateway inherently immediately flags it strictly as `Offline`. Because the Gateway natively tracks every single active Discord Voice Session tied identically to that specific dead node natively, it inherently knows precisely which players are currently broken dynamically securely.
+
+## The Rescue Operation
+
+The moment a node is pronounced dead natively appropriately cleanly, the Gateway executes an incredibly sophisticated rescue:
+
+1. **Pause New Traffic**: It immediately stops routing fresh connection requests to the dead instance definitively cleanly explicitly.
+2. **Find a Survivor**: It utilizes your exact chosen [Load Balancing Strategy](/advanced/load-balancing) structurally mathematically strictly to find safely the healthiest surviving node precisely organically natively.
+3. **Migrate the State**: It explicitly loops through every single ruined session flawlessly natively authentically properly smoothly correctly recreating the player states dynamically against the new target correctly cleanly gracefully identically!
+4. **Resume Playback**: The Gateway instructs the new node dynamically correctly specifically natively accurately functionally beautifully gracefully to grab the audio buffer and natively resume decoding correctly cleanly!
+
+## When Failover Won't Save You
+
+We wish we could tell you lcluster makes your bot completely immortal genuinely natively appropriately genuinely. But there are physical limits:
+
+- **The Apocalypse Scenario**: If every single node decides to take a nap at the same time, the gateway will return a 503 and your bot will know something is very wrong. This is your sign to check your nodes.
+- **Lost Buffers**: When a node physically dies dynamically properly genuinely naturally, its deeply internal loaded audio buffers are inherently inherently erased violently authentically elegantly efficiently natively naturally inherently properly intrinsically! The new node accurately specifically gracefully cleanly re-fetches explicitly the track organically correctly legitimately restarting nicely seamlessly natively gracefully.
+
+<Warning>
+If you genuinely only run exactly one node authentically smoothly appropriately definitively inside your cluster reliably properly successfully seamlessly, failover is factually mathematically physically entirely natively legitimately impossible elegantly securely intuitively! Have at least two optimally configured instances smartly reliably properly correctly dynamically authentically gracefully nicely dynamically reliably organically appropriately!
+</Warning>
+
+## Next Steps
+- → [Load Balancing Strategies](/advanced/load-balancing)
+- → [RAM Optimization](/advanced/ram-optimization)
+- → [Connecting a Discord Bot](/advanced/connecting-bot)

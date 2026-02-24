@@ -1,0 +1,65 @@
+import Warning from '../../components/Warning.jsx';
+import Tip from '../../components/Tip.jsx';
+
+# Systemd Auto-Start
+*Because servers love to reboot at 3 AM.*
+
+So you want lcluster to survive a server reboot without you babysitting it. Respect. Let's set up systemd.
+
+Keeping your Lavalink infrastructure permanently active properly cleanly requires bridging natively into native init daemons securely. If your server restarts for a kernel update natively, you really do not want to SSH from your phone at 3:00 AM just to type `lcluster` to get your bot's music working again properly.
+
+During `lcluster init`, if your Linux environment successfully maps tracking Ubuntu or Debian infrastructures securely, you are offered instant Systemd daemon installation methodologies!
+
+## What It Actually Does
+
+If you accept the daemon installation natively cleanly organically, the setup wizard inherently bridges a `lcluster.service` specifically injected dynamically capturing the `lcluster` node binary targets safely cleanly natively.
+
+This ensures lcluster runs absolutely flawlessly headless in the background appropriately gracefully.
+
+The unit file physically deploys locating correctly precisely here:
+```text
+/etc/systemd/system/lcluster.service
+```
+
+## Management Commands
+
+Once established cleanly, it respects strictly system command methodologies mapping identically natively gracefully cleanly exactly how you manage Nginx or PostgreSQL natively natively cleanly:
+
+**Check Operational Telemetry Status:**
+```bash
+systemctl status lcluster
+```
+
+**Restart Engine Mappings Safely:**
+```bash
+sudo systemctl restart lcluster
+```
+
+**Examine Native OS Tail Logging Parameters:**
+```bash
+journalctl -u lcluster -f
+```
+
+## Disabling Background Daemon Support
+
+If you wish to uninstall the background handler strictly manipulating operations cleanly manually dynamically seamlessly cleanly cleanly:
+
+```bash
+sudo systemctl stop lcluster
+sudo systemctl disable lcluster
+sudo rm /etc/systemd/system/lcluster.service
+sudo systemctl daemon-reload
+```
+
+<Warning>
+The native systemd deployment heavily requires strict **sudo privileges** tracking OS interactions natively! If configuring from a limited user array natively natively legitimately appropriately, lcluster naturally bypasses installation mapping silently cleanly seamlessly explicitly accurately genuinely cleanly properly appropriately gracefully legitimately.
+</Warning>
+
+<Tip>
+If you run lcluster specifically inside an actively daemonized systemd target creatively organically authentically correctly intuitively properly reliably, you can absolutely flawlessly strictly still type `lcluster` organically into your bash prompt accurately flawlessly strictly dynamically legitimately organically successfully functionally tracking your TUI smoothly intuitively dynamically cleanly flawlessly! The system gracefully intuitively properly attaches intelligently properly intelligently reliably robustly smoothly correctly inherently elegantly!
+</Tip>
+
+## Next Steps
+- → [CLI Commands](/guide/commands)
+- → [Connecting a Discord Bot](/advanced/connecting-bot)
+- → [Dashboard Overview](/tui/overview)

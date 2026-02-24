@@ -1,0 +1,92 @@
+import Warning from '../../components/Warning.jsx';
+
+# Node Templates
+*Because nobody likes rewriting application.yml files.*
+
+Behind every single physical Lavalink node running on your machine lies an intimidating `application.yml` configuration mapping. Instead of making you manually edit deeply buried configuration files every time you want a new node, lcluster leverages an incredibly powerful **Templates** architecture natively.
+
+A Template represents a validated, pre-configured `application.yml` file. When you ask lcluster to spawn an entirely new node, it copies your chosen Template natively straight into its active execution environment flawlessly.
+
+## Built-In Templates
+
+lcluster ships natively with three heavily optimized templates ready for production. For your own safety, you cannot delete built-in templates natively.
+
+### 1. Default Setup
+Excellent for typical bots managing standard memory allowances responsibly. It explicitly supports standard HTTP streaming, YouTube parsing, and SoundCloud data sourcing cleanly straight out of the box.
+
+```yaml
+server:
+  port: 2334
+  address: 0.0.0.0
+lavalink:
+  server:
+    password: "youshallnotpass"
+    sources:
+      youtube: true
+      bandcamp: false
+      soundcloud: true
+      twitch: false
+      vimeo: false
+      http: true
+      local: false
+```
+
+### 2. High Memory
+This config aggressively assumes you aren't paying the server bill. It natively prioritizes explicitly all possible data sources simultaneously and explicitly allows advanced heavy internal buffering allocations cleanly. Ideal for massive enterprise-grade bots.
+
+```yaml
+server:
+  port: 2335
+  address: 0.0.0.0
+lavalink:
+  server:
+    password: "youshallnotpass"
+    sources:
+      youtube: true
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: true
+```
+
+### 3. Minimal
+Strictly restricted. Aggressively trims memory footprints entirely natively. It only explicitly utilizes primary YouTube data resolvers cleanly. Exceptional for running tiny lightweight development instances explicitly natively.
+
+```yaml
+server:
+  port: 2336
+  address: 0.0.0.0
+lavalink:
+  server:
+    password: "youshallnotpass"
+    sources:
+      youtube: true
+      bandcamp: false
+      soundcloud: false
+      twitch: false
+      vimeo: false
+      http: false
+      local: false
+```
+
+## Adding Custom Templates
+
+You know your server best. You can cleanly load your own explicitly fine-tuned Lavalink configurations natively directly into the dashboard manager!
+
+User-defined templates are housed safely on your disk at exactly this folder path:
+```text
+~/.lcluster/templates/
+```
+
+Inside the active TUI dashboard, fiercely press `T` to navigate fully into the Templates screen dynamically explicitly. Selecting `+ Add new template` allows you natively save your proprietary setups smoothly definitively. 
+
+<Warning>
+lcluster aggressively performs absolutely strict validation testing natively on all custom templates correctly cleanly! If your custom YML lacks a specifically valid `server.port` entry conceptually or a firmly set `lavalink.server.password`, lcluster immediately cleanly explicitly rejects the entire payload mapping and refuses to save the corrupted configuration!
+</Warning>
+
+## Next Steps
+- → [Docker Mode](/nodes/docker)
+- → [Process Mode](/nodes/process)
+- → [TUI Navigation](/tui/navigation)

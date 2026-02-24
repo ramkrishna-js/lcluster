@@ -1,0 +1,67 @@
+---
+title: Home
+---
+
+<div style={{ textAlign: 'center', margin: '40px 0' }}>
+  <img src="/logo.svg" alt="lcluster icon" width="120" style={{ margin: '0 auto' }} />
+  <h1>lcluster</h1>
+  <p style={{ fontSize: '1.2rem', color: '#888' }}>
+    <em>A powerful Lavalink cluster manager for your terminal</em>
+  </p>
+  
+  <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+    <a href="/guide/hello-world" style={{ background: '#00ff9f', color: '#080b14', padding: '10px 20px', borderRadius: '4px', textDecoration: 'none', fontWeight: 'bold' }}>Hello World →</a>
+    <a href="https://github.com/yourname/lcluster" style={{ border: '1px solid #ccc', color: '#ccc', padding: '10px 20px', borderRadius: '4px', textDecoration: 'none', fontWeight: 'bold' }}>GitHub →</a>
+  </div>
+</div>
+
+<div style={{
+  border: '1px solid #00ff9f44',
+  background: '#00ff9f11',
+  borderRadius: '8px',
+  padding: '24px',
+  margin: '40px 0',
+}}>
+  <strong style={{ color: '#00ff9f', fontSize: '1.1em' }}>💙 A note from the developer</strong>
+  
+  <p style={{ marginTop: '12px', lineHeight: '1.6' }}>
+    This project took a significant amount of time, thought, and care to build.<br/>
+    Every detail — from the session handling to the terminal UI — was designed<br/>
+    with you in mind.
+  </p>
+  
+  <p style={{ marginTop: '12px', lineHeight: '1.6' }}>
+    If lcluster has helped you in any way, please consider contributing.<br/>
+    Whether it is reporting a bug, improving the docs, suggesting a feature,<br/>
+    or sharing it with others — every single contribution matters.
+  </p>
+  
+  <p style={{ marginTop: '12px', lineHeight: '1.6', fontWeight: 'bold' }}>
+    This project belongs to the community. Let's build something real together.
+  </p>
+</div>
+
+Most people outgrow a single Lavalink node eventually. But scaling audio isn't like scaling a website. You can't toss a dumb load balancer in front of it and call it a day, because audio sessions are painfully stateful. If the server dies, the song dies.
+
+So you write custom code in your Discord bot. You maintain lists of nodes. You write heartbeat checkers. You handle moving players between instances. And it's a huge, complicated mess. 
+
+We built **lcluster** so you never have to write that custom code again. It wraps a brilliant Smart Gateway in front of a fleet of nodes that you can manage directly from a beautiful full-screen terminal dashboard. It handles the annoying failovers. It balances the loads. It keeps the music alive.
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '40px' }}>
+  <div style={{ border: '1px solid #333', padding: '20px', borderRadius: '8px' }}>
+    <h3>🖥 Terminal Dashboard</h3>
+    <p>A beautiful, full-screen TUI (Terminal User Interface) built with React and Ink. Monitor memory, CPU, latency, and manage your nodes instantly without leaving the terminal.</p>
+  </div>
+  <div style={{ border: '1px solid #333', padding: '20px', borderRadius: '8px' }}>
+    <h3>🔀 Smart Gateway</h3>
+    <p>Your discord bot talks to a single gateway address. The gateway intelligently load-balances traffic and transparently fails over broken sessions so your bot doesn't have to panic.</p>
+  </div>
+  <div style={{ border: '1px solid #333', padding: '20px', borderRadius: '8px' }}>
+    <h3>🐋 Native & Docker Support</h3>
+    <p>Run nodes natively via Java jar files or completely isolated within Docker containers using the official image, all managed seamlessly from the UI.</p>
+  </div>
+  <div style={{ border: '1px solid #333', padding: '20px', borderRadius: '8px' }}>
+    <h3>⚡ Zero Config Bot Connection</h3>
+    <p>Lavalink v4 protocol compatibility out-of-the-box. Your music bot requires absolutely zero code changes to connect to the cluster. Just change the address.</p>
+  </div>
+</div>
