@@ -10,7 +10,7 @@ if (!process.env.LCLUSTER_TSX_BOOTSTRAPPED) {
   const result = spawnSync(process.execPath, [
     '--no-warnings',
     '--import',
-    'tsx',
+    import.meta.resolve('tsx'),
     __filename,
     ...process.argv.slice(2)
   ], {
