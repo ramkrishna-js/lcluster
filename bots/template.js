@@ -1,15 +1,30 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { LavalinkManager } from 'lavalink-client';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import yaml from 'js-yaml';
 
-// 1. Configure your Discord Bot Token here
-const DISCORD_TOKEN = 'YOUR_DISCORD_BOT_TOKEN';
+// 1. Token passed from lcluster bot manager securely
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN || 'YOUR_DISCORD_BOT_TOKEN';
 
-// 2. Configure your lcluster connection exactly as shown in the TUI Settings
+// 2. Read lcluster internal port/password config directly to avoid desync
+const configPath = path.join(os.homedir(), '.lcluster', 'config.yml');
+let lclusterPassword = 'youshallnotpass';
+let lclusterPort = 2333;
+if (fs.existsSync(configPath)) {
+    try {
+        const config = yaml.load(fs.readFileSync(configPath, 'utf8')) || {};
+        lclusterPassword = config.gateway?.password || 'youshallnotpass';
+        lclusterPort = config.gateway?.port || 2333;
+    } catch { }
+}
+
 const LCLUSTER_NODE = {
     id: "lcluster-gateway",
     host: "localhost",     // or your VPS IP
-    port: 2333,            // Port of the lcluster gateway
-    password: "youshallnotpass", // Password defined in lcluster Settings
+    port: lclusterPort,    // Dynamically synced from config
+    password: lclusterPassword, // Dynamically synced from config
     secure: false          // Set to true if behind HTTPS/WSS
 };
 

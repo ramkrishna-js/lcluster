@@ -161,7 +161,7 @@ export default function Settings({ onBack }) {
                 <Box flexDirection="column" paddingX={1} marginTop={1}>
                     <Text color={theme.borderDim}>{'─'.repeat(45)}</Text>
                     <Box marginTop={1} flexDirection="column">
-                        <Text color={theme.text} bold>lcluster v1.0.2-beta</Text>
+                        <Text color={theme.text} bold>lcluster v1.0.2</Text>
                         <Text color={theme.textDim}>Built by <Text color={theme.text}>Ram Krishna</Text> & <Text color={theme.text}>Claude (Anthropic AI)</Text></Text>
                         <Text color={theme.textDim}>This project was designed and built with the help of AI.</Text>
                     </Box>
