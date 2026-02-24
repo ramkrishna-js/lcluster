@@ -15,28 +15,24 @@
 
 ## What is lcluster
 
-lcluster is a terminal-based Lavalink cluster manager. Run multiple
-Lavalink nodes — via Docker or Java process — and manage them all
-from one beautiful full-screen TUI dashboard.
+**lcluster** is a terminal-based Lavalink cluster manager built for developers and server administrators. Run multiple Lavalink nodes — via Docker or Java process — and manage them all natively from one beautiful, fully-responsive, full-screen TUI dashboard.
 
-Your Discord bot connects to one single gateway address. lcluster
-handles routing, load balancing, session tracking, and failover
-behind the scenes. Your bot never knows there is a cluster.
+Your Discord bot connects to one single gateway address. **lcluster** powerfully handles all routing, load balancing, session tracking, and seamless failover behind the scenes. Your bot never knows there is a cluster, it just sees one highly available, extremely robust Lavalink node.
 
 ---
 
 ## Features
 
-- 🖥  Full-screen terminal dashboard (built with Ink)
-- ⬡  Single gateway endpoint for your Discord bot
-- 🐋  Docker and Java process node support
-- 🔌  External node auto-connect (bring your own Lavalink)
-- 🔀  Smart load balancing — least players, lowest CPU, round robin
-- ♻️  Automatic failover and session migration
-- 🔔  Discord webhook alerts for node events
-- 🖥  Ubuntu systemd auto-start support
-- 🎨  3 built-in themes — Neon, Minimal, Amber
-- ⚡  Tiny RAM footprint — built to be lean
+- 🖥️ **Full-Screen Terminal Dashboard**: Native visual management built on top of modern React/Ink.
+- ⬡ **Single Gateway Endpoint**: Connect your bot to one port, let lcluster handle the rest.
+- 🐋 **Multi-Environment Spawning**: Natively spins up Docker containers or standalone Java processes.
+- 🔌 **External Node Auto-Connect**: Bring your own existing Lavalink node and monitor it seamlessly.
+- 🔀 **Intelligent Load Balancing**: Chooses nodes based on `least players`, `lowest CPU`, or `round robin`.
+- ♻️ **Automatic Failover & Migration**: Seamless session migration if a node crashes.
+- 🔔 **Discord Webhook Alerts**: Real-time integration and monitoring piped directly to your Discord channel.
+- 🖥️ **Systemd Auto-Start**: Built-in Ubuntu/Linux daemon installation.
+- 🎨 **Adaptive Themes**: 3 gorgeous built-in TUI themes — Cyberpunk Neon, Clean Minimal, and Retro Amber.
+- ⚡ **Extremely Lightweight**: Tiny memory footprint natively optimizing underlying resources.
 
 ---
 
@@ -111,7 +107,7 @@ Lavalink v4 compatible client.
 
 ---
 
-## Dashboard Preview
+## TUI Dashboard Layout
 
 ```
 ╔═════════════════════════════════════════════════════════════════════╗
@@ -139,9 +135,22 @@ Lavalink v4 compatible client.
 
 ---
 
+## Configuration
+
+All local data, nodes, templates, and configurations are securely stored within `~/.lcluster/`:
+
+- `~/.lcluster/config.yml`: Global settings, themes, alerts, and gateway credentials.
+- `~/.lcluster/nodes.json`: Node registry mapping.
+- `~/.lcluster/templates/`: Local customized `application.yml` configs for dynamic deployment.
+- `~/.lcluster/nodes/`: Operating directory holding the `Lavalink.jar` and `application.yml` for process nodes.
+
+---
+
 ## Documentation
 
-Full documentation at **https://lcluster.dev**
+Full architectural guides, TUI maps, setup instructions, and deployment strategies are absolutely free and publicly available at: 
+
+🔗 **[https://lcluster.dev](https://lcluster.dev)**
 
 ---
 
