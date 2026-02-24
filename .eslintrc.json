@@ -1,0 +1,23 @@
+{
+    "env": {
+        "node": true,
+        "es2024": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "rules": {
+        "no-unused-vars": "warn",
+        "no-undef": "error",
+        "no-console": "off",
+        "no-constant-condition": "warn",
+        "no-empty": "warn"
+    }
+}

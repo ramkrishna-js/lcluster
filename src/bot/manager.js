@@ -6,7 +6,7 @@ import { events } from '../core/events.js';
 
 let botProcess = null;
 
-export function startBot() {
+export async function startBot() {
     const configPath = path.join(os.homedir(), '.lcluster', 'config.yml');
 
     let config = {};

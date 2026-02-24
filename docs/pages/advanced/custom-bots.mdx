@@ -1,0 +1,37 @@
+import Warning from '../../components/Warning.jsx';
+
+# Custom Discord Bots
+*Managing your customized Discord clients natively through lcluster.*
+
+Introduced in `v1.0.2`, lcluster provides a sandboxed daemon engine dedicated to instantly spinning up user-defined Discord bots alongside your Lavalink node cluster.
+
+Instead of writing a complex bot project entirely from scratch, provisioning its own systemd services, and manually keeping the Lavalink gateway ports synced—lcluster handles all of this automatically.
+
+## How it Works
+
+When lcluster boots the main Terminal UI, it executes the initialization lifecycle:
+1. `loadNodes()`: Binds the node registry.
+2. `startHealthCheck()`: Boots the node ping systems.
+3. `startGateway()`: Initializes the single-entry WebSocket endpoint mapping.
+4. `startBot()`: (New) Forks an attached daemon for a Discord client.
+
+### The Bot Template
+
+Deep inside the lcluster configuration tree is a `bots/` folder natively shipped with the framework. By modifying `bots/template.js`, you can build your Discord bot locally without ever leaving your cluster manager repository.
+
+The template dynamically resolves your gateway password and internal routing `port` natively from the central `~/.lcluster/config.yml` engine. This protects your bot from ever becoming disconnected or desynced from your Lavalink shards.
+
+## Enabling the Daemon
+
+To turn this feature on:
+1. Hit `S` in the TUI to open **Settings**.
+2. Scroll to the `Custom Bot / Event Loop` section.
+3. Change **Custom Bot Wrapper** to `< enabled >`.
+4. Paste your Discord Application Token directly into the masked input field below it.
+
+The token is instantly encrypted into your `.lcluster` configurations and securely passed across the local environment map dynamically avoiding hardcoded values.
+
+<Warning>
+**Terminal Clutter:**
+The attached Bot daemon explicitly has `stdio` outputs ignored across its fork process. Do not write `console.log()` statements inside your `template.js` bot file expecting to see them inside the lcluster dashboard—it will not render correctly.
+</Warning>

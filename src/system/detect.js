@@ -1,4 +1,5 @@
 import os from 'node:os';
+import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import net from 'node:net';
 

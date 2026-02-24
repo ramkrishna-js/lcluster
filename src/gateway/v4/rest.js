@@ -12,6 +12,8 @@ export function handleRest(req, res) {
     }
 
     // Handle specific session
+    // eslint-disable-next-line no-useless-escape
+    const isSessionUpdate = req.method === 'PATCH' && /^\/v4\/sessions\/[a-zA-Z0-9]+$/.test(req.url);
     const sessionMatch = path.match(/^\/v4\/sessions\/([^\/]+)(.*)$/);
     if (sessionMatch) {
         const sessionId = sessionMatch[1];
