@@ -8,7 +8,7 @@ import { getTheme, updateTheme } from '../theme/index.js';
 import Border from '../components/Border.jsx';
 import TextInput from 'ink-text-input';
 
-const themes = ['neon', 'minimal', 'amber'];
+const themes = ['neon', 'minimal', 'amber', 'cyberpunk', 'hacker', 'ocean'];
 
 export default function Settings({ onBack }) {
     const configPath = path.join(os.homedir(), '.lcluster', 'config.yml');

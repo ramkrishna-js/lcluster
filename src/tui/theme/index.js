@@ -5,6 +5,9 @@ import yaml from 'js-yaml';
 import neon from './neon.js';
 import minimal from './minimal.js';
 import amber from './amber.js';
+import cyberpunk from './cyberpunk.js';
+import hacker from './hacker.js';
+import ocean from './ocean.js';
 
 let currentThemeConfig = 'neon';
 
@@ -28,6 +31,9 @@ export function getTheme() {
     switch (currentThemeConfig) {
         case 'minimal': return minimal;
         case 'amber': return amber;
+        case 'cyberpunk': return cyberpunk;
+        case 'hacker': return hacker;
+        case 'ocean': return ocean;
         case 'neon':
         default: return neon;
     }

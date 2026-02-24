@@ -6,7 +6,10 @@ import Border from '../components/Border.jsx';
 const themes = [
     { id: 'neon', name: '1. Cyberpunk Neon', desc: 'green glow, dark background' },
     { id: 'minimal', name: '2. Clean Minimal', desc: 'soft purple, modern and readable' },
-    { id: 'amber', name: '3. Retro Amber', desc: 'old school CRT terminal feel' }
+    { id: 'amber', name: '3. Retro Amber', desc: 'old school CRT terminal feel' },
+    { id: 'cyberpunk', name: '4. Cyberpunk', desc: 'neon pink and cyan highlights' },
+    { id: 'hacker', name: '5. Hacker', desc: 'matrix style green on black' },
+    { id: 'ocean', name: '6. Deep Ocean', desc: 'calming deep blues and seafoam' }
 ];
 
 export default function ThemePicker({ onNext, updateConfig }) {
