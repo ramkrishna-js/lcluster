@@ -49,7 +49,9 @@ export default function NodeCard({ node, isSelected }) {
                         <Text color={modeColor}>{node.mode} {modeIcon}</Text>
                     </Box>
                     <Box>
-                        <StatusDot status={statusText} /> <Text color={statusColor}>{statusText}</Text>
+                        <Text color={statusColor}>
+                            <StatusDot status={statusText} /> {statusText}
+                        </Text>
                     </Box>
                 </Box>
 
