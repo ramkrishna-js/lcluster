@@ -86,8 +86,7 @@ export default function Settings({ onBack }) {
         <Box flexDirection="column" width="100%" height="100%" backgroundColor={theme.background}>
             <Border title="settings" borderColor={theme.border} flexGrow={1}>
                 <Box flexDirection="column" paddingX={1} marginY={1}>
-                        <Text color={theme.textDim}>APPEARANCE</Text>
-                    </Box>
+                    <Text color={theme.textDim}>APPEARANCE</Text>
                     <Box marginBottom={1}>
                         <Text color={theme.textDim}>Theme          </Text>
                         <Text color={field === 0 ? theme.text : theme.textDim}>
@@ -140,15 +139,15 @@ export default function Settings({ onBack }) {
                 <Box flexDirection="column" paddingX={1} marginTop={1}>
                     <Text color={theme.borderDim}>{'─'.repeat(45)}</Text>
                     <Box marginTop={1} flexDirection="column">
-                        <Text color={theme.text} bold>lcluster v1.0.0</Text>
+                        <Text color={theme.text} bold>lcluster v1.0.1</Text>
                         <Text color={theme.textDim}>Built by <Text color={theme.text}>Ram Krishna</Text> & <Text color={theme.text}>Claude (Anthropic AI)</Text></Text>
                         <Text color={theme.textDim}>This project was designed and built with the help of AI.</Text>
                     </Box>
                 </Box>
             </Border >
-        <Box marginTop={1}>
-            <Text color={theme.textDim}>[↑↓] fields   [←→] change theme   [enter] save   [q/esc] cancel</Text>
-        </Box>
+            <Box marginTop={1}>
+                <Text color={theme.textDim}>[↑↓] fields   [←→] change theme   [enter] save   [q/esc] cancel</Text>
+            </Box>
         </Box >
     );
 }

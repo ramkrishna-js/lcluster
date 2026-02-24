@@ -17,7 +17,7 @@ export default function Dashboard({ nodes, gatewayPort, uptimeStart, onAction })
         <Box flexDirection="column" paddingX={2} paddingY={1} width="100%" height="100%" backgroundColor={theme.background}>
             <Border borderColor={theme.border}>
                 <Box flexDirection="row" justifyContent="space-between" width="100%">
-                    <Text color={theme.accent}>  ⬡ lcluster v1.0.0</Text>
+                    <Text color={theme.accent}>  ⬡ lcluster v1.0.1</Text>
                     <Box flexDirection="row" gap={2}>
                         <Text color={theme.online}>● {nodes.filter(n => n.status === 'online').length} online</Text>
                         <Text color={theme.degraded}>⚠ {nodes.filter(n => n.status === 'degraded' || n.status === 'reconnecting').length} warn</Text>

@@ -4,7 +4,7 @@
   <p>A powerful Lavalink cluster manager for your terminal.</p>
 
   <p>
-    <img src="https://img.shields.io/badge/version-1.0.0-blue" />
+    <img src="https://img.shields.io/badge/version-1.0.1-blue" />
     <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-green" />
     <img src="https://img.shields.io/badge/license-GPLv3-purple" />
     <img src="https://img.shields.io/badge/built%20with-Claude%20AI-orange" />
@@ -111,7 +111,7 @@ Lavalink v4 compatible client.
 
 ```
 ╔═════════════════════════════════════════════════════════════════════╗
-║  ⬡ lcluster v1.0.0    ● 2 online  ⚠ 1 warn    gateway :2333  ●   ║
+║  ⬡ lcluster v1.0.1    ● 2 online  ⚠ 1 warn    gateway :2333  ●   ║
 ╚═════════════════════════════════════════════════════════════════════╝
 
   ┌─ nodes (3/5) ──────────────────────────────────── [↑↓ scroll] ─┐
@@ -151,13 +151,6 @@ All local data, nodes, templates, and configurations are securely stored within 
 Full architectural guides, TUI maps, setup instructions, and deployment strategies are absolutely free and publicly available at: 
 
 🔗 **[https://lcluster.dev](https://lcluster.dev)**
-
----
-
-## Roadmap
-
-- [x] v1.0.0 — Core cluster manager, TUI dashboard, gateway, alerts
-- [ ] v1.0.1 — Custom Discord bot integration with token support
 
 ---
 

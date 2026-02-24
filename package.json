@@ -1,6 +1,6 @@
 {
   "name": "lcluster",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A powerful Lavalink cluster manager for your terminal",
   "main": "src/cli.js",
   "type": "module",
