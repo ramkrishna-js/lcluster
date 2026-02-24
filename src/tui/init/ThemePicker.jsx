@@ -9,7 +9,8 @@ const themes = [
     { id: 'amber', name: '3. Retro Amber', desc: 'old school CRT terminal feel' },
     { id: 'cyberpunk', name: '4. Cyberpunk', desc: 'neon pink and cyan highlights' },
     { id: 'hacker', name: '5. Hacker', desc: 'matrix style green on black' },
-    { id: 'ocean', name: '6. Deep Ocean', desc: 'calming deep blues and seafoam' }
+    { id: 'ocean', name: '6. Deep Ocean', desc: 'calming deep blues and seafoam' },
+    { id: 'custom', name: '7. Custom JSON', desc: 'loads ~/.lcluster/custom.json' }
 ];
 
 export default function ThemePicker({ onNext, updateConfig }) {

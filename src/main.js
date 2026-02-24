@@ -129,5 +129,44 @@ export async function runCLI() {
             console.log(`Tailing logs for ${name}...`);
         });
 
+    program
+        .command('theme')
+        .description('generates a custom.json theme baseline')
+        .action(async () => {
+            const fs = await import('node:fs');
+            const path = await import('node:path');
+            const os = await import('node:os');
+            const customPath = path.join(os.homedir(), '.lcluster', 'custom.json');
+
+            const boilerplate = {
+                "border": "#00ff9f",
+                "borderDim": "#00ff9f33",
+                "text": "#00ff9f",
+                "textDim": "#00ff9f66",
+                "background": "#080b14",
+                "selected": "#00ff9f11",
+                "selectedBorder": "#00ff9f55",
+                "online": "#00ff9f",
+                "degraded": "#ffcc00",
+                "offline": "#ff3366",
+                "docker": "#4facfe",
+                "process": "#a8edea",
+                "accent": "#00ff9f",
+                "keyHint": "#00ff9f33"
+            };
+
+            if (fs.existsSync(customPath)) {
+                console.log(chalk.yellow(`\n⚠ A custom theme already exists at: ${customPath}`));
+                console.log('Modify the file directly to continue customizing your TUI!');
+            } else {
+                fs.mkdirSync(path.join(os.homedir(), '.lcluster'), { recursive: true });
+                fs.writeFileSync(customPath, JSON.stringify(boilerplate, null, 4), 'utf8');
+                console.log(chalk.green(`\n✔ Custom Theme built successfully at: ${customPath}`));
+                console.log(chalk.cyan('\n1. Edit the hex colors inside custom.json'));
+                console.log(chalk.cyan('2. Open the TUI Dashboard (`lcluster`)'));
+                console.log(chalk.cyan('3. Press [q] then Settings and select the "< custom >" theme limit!\n'));
+            }
+        });
+
     program.parse();
 }

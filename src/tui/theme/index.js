@@ -10,6 +10,7 @@ import hacker from './hacker.js';
 import ocean from './ocean.js';
 
 let currentThemeConfig = 'neon';
+let customThemeCache = null;
 
 export function loadTheme() {
     const configPath = path.join(os.homedir(), '.lcluster', 'config.yml');
@@ -28,6 +29,22 @@ export function updateTheme(name) {
 }
 
 export function getTheme() {
+    if (currentThemeConfig === 'custom') {
+        if (!customThemeCache) {
+            const customPath = path.join(os.homedir(), '.lcluster', 'custom.json');
+            if (fs.existsSync(customPath)) {
+                try {
+                    customThemeCache = JSON.parse(fs.readFileSync(customPath, 'utf8'));
+                } catch {
+                    customThemeCache = neon; // Fallback bad json
+                }
+            } else {
+                customThemeCache = neon;
+            }
+        }
+        return customThemeCache;
+    }
+
     switch (currentThemeConfig) {
         case 'minimal': return minimal;
         case 'amber': return amber;
