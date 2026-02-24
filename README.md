@@ -4,7 +4,7 @@
   <p>A powerful Lavalink cluster manager for your terminal.</p>
 
   <p>
-    <img src="https://img.shields.io/badge/version-1.0.1-blue" />
+    <img src="https://img.shields.io/badge/version-1.0.2--beta-blue" />
     <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-green" />
     <img src="https://img.shields.io/badge/license-GPLv3-purple" />
     <img src="https://img.shields.io/badge/built%20with-Claude%20AI-orange" />
@@ -111,7 +111,7 @@ Lavalink v4 compatible client.
 
 ```
 ╔═════════════════════════════════════════════════════════════════════╗
-║  ⬡ lcluster v1.0.1    ● 2 online  ⚠ 1 warn    gateway :2333  ●   ║
+║  ⬡ lcluster v1.0.2-beta    ● 2 online  ⚠ 1 warn    gateway :2333  ●  ║
 ╚═════════════════════════════════════════════════════════════════════╝
 
   ┌─ nodes (3/5) ──────────────────────────────────── [↑↓ scroll] ─┐

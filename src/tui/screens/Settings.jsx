@@ -32,7 +32,10 @@ export default function Settings({ onBack }) {
     const [soundEnabled, setSoundEnabled] = useState(config.alerts?.sound?.enabled || false);
     const [cpuWarn, setCpuWarn] = useState(String(config.alerts?.thresholds?.cpu_warn || 90));
 
-    const [field, setField] = useState(0); // 0..7 
+    const [botEnabled, setBotEnabled] = useState(config.bot?.enabled || false);
+    const [botToken, setBotToken] = useState(config.bot?.token || '');
+
+    const [field, setField] = useState(0); // 0..9 
 
     const theme = getTheme();
 
@@ -41,7 +44,7 @@ export default function Settings({ onBack }) {
             onBack();
         }
         if (key.upArrow) setField(Math.max(0, field - 1));
-        if (key.downArrow) setField(Math.min(7, field + 1));
+        if (key.downArrow) setField(Math.min(9, field + 1));
 
         if (field === 0) {
             if (key.leftArrow) {
@@ -60,6 +63,7 @@ export default function Settings({ onBack }) {
             if (field === 3) setDiscordEnabled(!discordEnabled);
             else if (field === 5) setDesktopEnabled(!desktopEnabled);
             else if (field === 6) setSoundEnabled(!soundEnabled);
+            else if (field === 8) setBotEnabled(!botEnabled);
             else {
                 // Save config
                 const newConfig = {
@@ -74,6 +78,10 @@ export default function Settings({ onBack }) {
                         desktop: { enabled: desktopEnabled },
                         sound: { enabled: soundEnabled },
                         thresholds: { cpu_warn: parseInt(cpuWarn) || 90, idle_warn: false }
+                    },
+                    bot: {
+                        enabled: botEnabled,
+                        token: botToken
                     }
                 };
                 fs.writeFileSync(configPath, yaml.dump(newConfig), 'utf8');
@@ -135,11 +143,25 @@ export default function Settings({ onBack }) {
                         <TextInput value={cpuWarn} onChange={setCpuWarn} focus={field === 7} />
                         <Text color={theme.textDim}>%</Text>
                     </Box>
+
+                    <Box marginTop={1}>
+                        <Text color={theme.textDim}>CUSTOM BOT (v1.0.2)</Text>
+                    </Box>
+                    <Box>
+                        <Text color={theme.textDim}>Active         </Text>
+                        {field === 8 ? <Text color={theme.accent}>▶ </Text> : <Text>  </Text>}
+                        <Text color={botEnabled ? theme.online : theme.textDim}>{botEnabled ? '● enabled' : '○ disabled'}</Text>
+                    </Box>
+                    <Box>
+                        <Text color={theme.textDim}>Discord Token  </Text>
+                        {field === 9 ? <Text color={theme.accent}>▶ </Text> : <Text>  </Text>}
+                        <TextInput value={botToken} onChange={setBotToken} focus={field === 9} mask="•" />
+                    </Box>
                 </Box>
                 <Box flexDirection="column" paddingX={1} marginTop={1}>
                     <Text color={theme.borderDim}>{'─'.repeat(45)}</Text>
                     <Box marginTop={1} flexDirection="column">
-                        <Text color={theme.text} bold>lcluster v1.0.1</Text>
+                        <Text color={theme.text} bold>lcluster v1.0.2-beta</Text>
                         <Text color={theme.textDim}>Built by <Text color={theme.text}>Ram Krishna</Text> & <Text color={theme.text}>Claude (Anthropic AI)</Text></Text>
                         <Text color={theme.textDim}>This project was designed and built with the help of AI.</Text>
                     </Box>

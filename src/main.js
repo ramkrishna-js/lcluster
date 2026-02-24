@@ -16,7 +16,7 @@ export async function runCLI() {
         .name('lcluster')
         .description('⬡ lcluster — Lavalink Cluster Manager')
         .version(`
-  ⬡ lcluster v1.0.1
+  ⬡ lcluster v1.0.2-beta
 
   Built by Ram Krishna & Claude (Anthropic AI)
   Lavalink Cluster Manager for Node.js
